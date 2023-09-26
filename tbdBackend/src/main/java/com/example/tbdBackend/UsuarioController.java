@@ -1,4 +1,4 @@
-package com.example.tbdBackend;
+package com.example.TBDBackend;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

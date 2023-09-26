@@ -1,4 +1,4 @@
-package com.example.tbdBackend;
+package com.example.TBDBackend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

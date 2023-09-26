@@ -1,4 +1,4 @@
-package com.example.tbdBackend;
+package com.example.TBDBackend;
 
 public class Usuario {
 
