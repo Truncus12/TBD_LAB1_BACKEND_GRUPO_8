@@ -12,7 +12,7 @@ public class VoluntarioService {
     @Autowired
     VoluntarioRepository voluntarioRepository;
 
-    public int insertarVoluntario(VoluntarioEntity voluntario){
+    public int insertarVoluntario(VoluntarioEntity voluntario) {
         return voluntarioRepository.insertarVoluntario(voluntario);
     }
 

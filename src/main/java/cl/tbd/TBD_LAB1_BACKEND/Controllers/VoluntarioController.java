@@ -13,28 +13,29 @@ public class VoluntarioController {
 
     @Autowired
     VoluntarioService voluntarioService;
+
     @PostMapping
-    public int insertarVoluntario(@RequestBody VoluntarioEntity voluntario){
-       return voluntarioService.insertarVoluntario(voluntario);
+    public int insertarVoluntario(@RequestBody VoluntarioEntity voluntario) {
+        return voluntarioService.insertarVoluntario(voluntario);
     }
 
     @GetMapping
-    public List<VoluntarioEntity> obtenerVoluntarios(){
+    public List<VoluntarioEntity> obtenerVoluntarios() {
         return voluntarioService.obtenerVoluntarios();
     }
 
     @GetMapping("/{id}")
-    public VoluntarioEntity obtenerVoluntarioPorId(@PathVariable Long id){
+    public VoluntarioEntity obtenerVoluntarioPorId(@PathVariable Long id) {
         return voluntarioService.obtenerVoluntarioPorId(id);
     }
 
     @PutMapping("/{id}")
-    public int actualizarVoluntario(@PathVariable Long id, @RequestBody VoluntarioEntity voluntario){
+    public int actualizarVoluntario(@PathVariable Long id, @RequestBody VoluntarioEntity voluntario) {
         return voluntarioService.actualizarVoluntario(id, voluntario);
     }
 
     @DeleteMapping("/{id}")
-    public int eliminarVoluntario(@PathVariable Long id){
+    public int eliminarVoluntario(@PathVariable Long id) {
         return voluntarioService.eliminarVoluntario(id);
     }
 }

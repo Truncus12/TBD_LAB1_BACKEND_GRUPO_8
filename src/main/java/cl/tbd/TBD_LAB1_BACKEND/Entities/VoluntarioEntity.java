@@ -4,9 +4,9 @@ package cl.tbd.TBD_LAB1_BACKEND.Entities;
 public class VoluntarioEntity {
 
     private Long id;
-    String nombre;
-    String correo;
-    String contrasena;
+    private String nombre;
+    private String correo;
+    private String contrasena;
 
 
     public VoluntarioEntity() {

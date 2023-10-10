@@ -15,6 +15,7 @@ public class DatabaseContext {
 
     @Value("${spring.datasource.password}")
     private String dbPass;
+
     @Bean
     public Sql2o sql2o() {
         return new Sql2o(dbUrl, dbUser, dbPass);
