@@ -1,12 +1,12 @@
-package com.example.TBDBackend;
+package cl.tbd.TBD_LAB1_BACKEND.Entities;
 
-public class Usuario {
+public class UsuarioEntity {
 
     private Long id;
     String nombre;
     String correo;
 
-    public Usuario(String nombre, String correo) {
+    public UsuarioEntity(String nombre, String correo) {
         this.nombre = nombre;
         this.correo = correo;
     }
