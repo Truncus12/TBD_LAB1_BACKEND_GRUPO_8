@@ -17,8 +17,13 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.sql2o:sql2o:1.6.0'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	// https://mvnrepository.com/artifact/org.sql2o/sql2o
+	implementation group: 'org.sql2o', name: 'sql2o', version: '1.5.4'
+
+	// https://mvnrepository.com/artifact/org.postgresql/postgresql
+	implementation group: 'org.postgresql', name: 'postgresql', version: '42.6.0'
 }
 
 tasks.named('test') {

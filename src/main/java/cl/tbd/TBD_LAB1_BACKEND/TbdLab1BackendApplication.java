@@ -9,5 +9,4 @@ public class TbdLab1BackendApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TbdLab1BackendApplication.class, args);
 	}
-
 }
