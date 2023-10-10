@@ -16,13 +16,13 @@ public class TareaRepositoryImp implements TareaRepository {
     @Override
     public int insertarTarea(TareaEntity tarea) {
         try (Connection conn = sql2o.open()) {
-            String sql = "INSERT INTO Tarea (nombre, descripcion, cant_vol_req, cant_vol_ins, fecha_inicio, fecha_fin, estado_actual, id_emergencia)" +
-                    "VALUES (:nombre, :descripcion, :cant_vol_req, :cant_vol_ins, :fecha_inicio, :fecha_fin, :estado_actual, :id_emergencia)";
+            String sql = "INSERT INTO Tarea (nombre, descripcion, cant_vol_requeridos, cant_vol_inscritos, fecha_inicio, fecha_fin, estado_actual, id_emergencia)" +
+                    "VALUES (:nombre, :descripcion, :cant_vol_requeridos, :cant_vol_inscritos, :fecha_inicio, :fecha_fin, :estado_actual, :id_emergencia)";
             conn.createQuery(sql, true)
                     .addParameter("nombre", tarea.getNombre())
                     .addParameter("descripcion", tarea.getDescripcion())
-                    .addParameter("cant_vol_req", tarea.getCant_vol_req())
-                    .addParameter("cant_vol_ins", tarea.getCant_vol_ins())
+                    .addParameter("cant_vol_requeridos", tarea.getCant_vol_requeridos())
+                    .addParameter("cant_vol_inscritos", tarea.getCant_vol_inscritos())
                     .addParameter("fecha_inicio", tarea.getFecha_inicio())
                     .addParameter("fecha_fin", tarea.getFecha_fin())
                     .addParameter("estado_actual", tarea.getEstado_actual())
@@ -74,13 +74,13 @@ public class TareaRepositoryImp implements TareaRepository {
     public int actualizarTarea(Long id, TareaEntity tarea) {
         try (Connection conn = sql2o.open()) {
             conn.createQuery("UPDATE Tarea " +
-                            "SET nombre = :nombre, descripcion = :descripcion, cant_vol_req = :cant_vol_req, cant_vol_ins = :cant_vol_ins, fecha_inicio = :fecha_inicio, fecha_fin = :fecha_fin, estado_actual = :estado_actual, id_emergencia = :id_emergencia " +
+                            "SET nombre = :nombre, descripcion = :descripcion, cant_vol_requeridos = :cant_vol_requeridos, cant_vol_inscritos = :cant_vol_inscritos, fecha_inicio = :fecha_inicio, fecha_fin = :fecha_fin, estado_actual = :estado_actual, id_emergencia = :id_emergencia " +
                             "WHERE id = :id")
                     .addParameter("id", id)
                     .addParameter("nombre", tarea.getNombre())
                     .addParameter("descripcion", tarea.getDescripcion())
-                    .addParameter("cant_vol_req", tarea.getCant_vol_req())
-                    .addParameter("cant_vol_ins", tarea.getCant_vol_ins())
+                    .addParameter("cant_vol_requeridos", tarea.getCant_vol_requeridos())
+                    .addParameter("cant_vol_inscritos", tarea.getCant_vol_inscritos())
                     .addParameter("fecha_inicio", tarea.getFecha_inicio())
                     .addParameter("fecha_fin", tarea.getFecha_fin())
                     .addParameter("estado_actual", tarea.getEstado_actual())
