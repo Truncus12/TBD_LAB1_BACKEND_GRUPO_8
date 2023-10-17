@@ -1,5 +1,6 @@
 package cl.tbd.TBD_LAB1_BACKEND.Repositories;
 
+import cl.tbd.TBD_LAB1_BACKEND.DTOs.DTOTareaVista;
 import cl.tbd.TBD_LAB1_BACKEND.Entities.TareaEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -104,5 +105,21 @@ public class TareaRepositoryImp implements TareaRepository {
             System.out.println(e.getMessage());
             return -1;
         }
+    }
+
+    @Override
+    public List<DTOTareaVista> porUsuario(int id_voluntario) {
+        try(Connection conexion = sql2o.open()){
+            return conexion.createQuery(
+                    "SELECT * FROM VistaTareaVoluntario WHERE id_voluntario = :id"
+                )
+                .addParameter("id", id_voluntario)
+                .executeAndFetch(DTOTareaVista.class);           
+        }
+        catch(Exception error){
+            error.printStackTrace();
+        }
+
+        return null;
     }
 }
