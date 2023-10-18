@@ -17,13 +17,24 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    
+    // https://mvnrepository.com/artifact/com.auth0/java-jwt
+    implementation group: 'com.auth0', name: 'java-jwt', version: '4.4.0'
+
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+    
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '3.1.4'
 
 	// https://mvnrepository.com/artifact/org.sql2o/sql2o
 	implementation group: 'org.sql2o', name: 'sql2o', version: '1.5.4'
 
 	// https://mvnrepository.com/artifact/org.postgresql/postgresql
 	implementation group: 'org.postgresql', name: 'postgresql', version: '42.6.0'
+
+
+    // Dependencias de prueba
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 tasks.named('test') {
