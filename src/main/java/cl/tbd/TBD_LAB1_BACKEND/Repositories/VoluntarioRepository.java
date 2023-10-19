@@ -14,4 +14,6 @@ public interface VoluntarioRepository {
     int actualizarVoluntario(Long id, VoluntarioEntity voluntario);
 
     int eliminarVoluntario(Long id);
+
+    int idPorCredenciales(String correo, String contrasena);
 }

@@ -15,16 +15,19 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository {
 
     @Override
     public int insertarVoluntario(VoluntarioEntity voluntario) {
-        try (Connection conn = sql2o.open()) {
-            String sql = "INSERT INTO Voluntario (nombre, correo, contrasena)" +
-                    "VALUES (:nombre, :correo, :contrasena)";
-            conn.createQuery(sql, true)
+        try(Connection conexion = sql2o.open()){
+            String sql = """
+                INSERT INTO Voluntario (nombre, correo, contrasena)
+                VALUES (:nombre, :correo, :contrasena)
+                """;
+            return conexion.createQuery(sql, true)
                     .addParameter("nombre", voluntario.getNombre())
                     .addParameter("correo", voluntario.getCorreo())
                     .addParameter("contrasena", voluntario.getContrasena())
-                    .executeUpdate();
-            return 1;
-        } catch (Exception e) {
+                    .executeUpdate()
+                    .getKey(Integer.class);
+        } 
+        catch(Exception e){
             System.out.println(e.getMessage());
             return -1;
         }
@@ -79,6 +82,26 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository {
                     .executeUpdate();
             return 1;
         } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return -1;
+        }
+    }
+
+    @Override
+    public int idPorCredenciales(String correo, String contrasena){
+        try(Connection conexion = sql2o.open()){
+            return conexion.createQuery("""
+                    SELECT id
+                    FROM Voluntario
+                    WHERE
+                        correo = :correo
+                    AND contrasena = :contra
+                    """)
+                .addParameter("correo", correo)
+                .addParameter("contra", contrasena)
+                .executeAndFetchFirst(Integer.class);
+        }
+        catch(Exception e){
             System.out.println(e.getMessage());
             return -1;
         }

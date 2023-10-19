@@ -5,9 +5,11 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import cl.tbd.TBD_LAB1_BACKEND.DTOs.DTOIniciarSesion;
 import cl.tbd.TBD_LAB1_BACKEND.Services.AutenticacionService;
 
 @Controller
@@ -16,10 +18,10 @@ public class AutenticacionController {
     @Autowired
     private AutenticacionService servicio_auth;
 
-    @GetMapping
-    public ResponseEntity<String> iniciarSesion(){
+    @PostMapping
+    public ResponseEntity<String> iniciarSesion(@RequestBody DTOIniciarSesion dto){
         ResponseCookie cookie_sesion = ResponseCookie
-            .from("token_sesion", servicio_auth.generarToken())
+            .from("token_sesion", servicio_auth.generarToken(dto))
             .httpOnly(true)
             .secure(true)
             .path("/")

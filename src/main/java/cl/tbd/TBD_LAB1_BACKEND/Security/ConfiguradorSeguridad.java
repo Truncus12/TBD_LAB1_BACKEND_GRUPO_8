@@ -15,7 +15,7 @@ public class ConfiguradorSeguridad {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests((authz) -> authz
-                .antMatchers("/api/auth").permitAll()
+                .antMatchers("/api/auth", "/api/voluntario/registrar").permitAll()
                 .anyRequest().authenticated()
             )
             .csrf().disable()
