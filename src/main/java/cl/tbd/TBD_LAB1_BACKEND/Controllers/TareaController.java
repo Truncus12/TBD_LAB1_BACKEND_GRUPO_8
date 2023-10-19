@@ -22,7 +22,7 @@ public class TareaController {
     @Autowired
     private AutenticacionService servicio_auth;
     
-    @GetMapping("por-usuario")
+    @GetMapping
     public List<DTOTareaVista> porUsuario(@CookieValue("token_sesion") String jwt){
         return servicio_tarea
             .porUsuario(
@@ -30,10 +30,19 @@ public class TareaController {
             );
     }
 
-    @PostMapping("{id}/completar")
-    public DTOTareaVista completar(@CookieValue("token_sesion") String jwt, @PathVariable("id") long id_tarea){
+    @PostMapping("{id}/terminar")
+    public DTOTareaVista terminar(@CookieValue("token_sesion") String jwt, @PathVariable("id") long id_tarea){
         return servicio_tarea
-            .completar(
+            .terminar(
+                id_tarea, 
+                servicio_auth.getIdVoluntario(jwt)
+            );
+    }
+    
+    @PostMapping("{id}/cancelar")
+    public DTOTareaVista cancelar(@CookieValue("token_sesion") String jwt, @PathVariable("id") long id_tarea){
+        return servicio_tarea
+            .cancelar(
                 id_tarea, 
                 servicio_auth.getIdVoluntario(jwt)
             );

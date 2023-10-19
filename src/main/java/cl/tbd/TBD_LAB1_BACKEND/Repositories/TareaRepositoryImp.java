@@ -1,6 +1,7 @@
 package cl.tbd.TBD_LAB1_BACKEND.Repositories;
 
 import cl.tbd.TBD_LAB1_BACKEND.DTOs.DTOTareaVista;
+import cl.tbd.TBD_LAB1_BACKEND.Entities.EstadoTareaEnum;
 import cl.tbd.TBD_LAB1_BACKEND.Entities.TareaEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -124,12 +125,12 @@ public class TareaRepositoryImp implements TareaRepository {
     }
 
     @Override
-    public DTOTareaVista completar(long id, int id_voluntario){
+    public DTOTareaVista terminar(long id, int id_voluntario){
         try(Connection conexion = sql2o.open()){
             conexion.createQuery("""
                 UPDATE Tarea_X_Voluntario
                 SET 
-                    completada = TRUE
+                    estado = :id_estado
                 WHERE 
                     id_tarea = :id 
                 AND id_voluntario = :id_voluntario
@@ -137,6 +138,31 @@ public class TareaRepositoryImp implements TareaRepository {
                 )
                 .addParameter("id", id)
                 .addParameter("id_voluntario", id_voluntario)
+                .addParameter("id_estado", EstadoTareaEnum.TERMINADA.id)
+                .executeUpdate();
+        }
+        catch(Exception error){
+            error.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
+    public DTOTareaVista cancelar(long id, int id_voluntario){
+        try(Connection conexion = sql2o.open()){
+            conexion.createQuery("""
+                UPDATE Tarea_X_Voluntario
+                SET 
+                    estado = :id_estado
+                WHERE 
+                    id_tarea = :id 
+                AND id_voluntario = :id_voluntario
+                    """
+                )
+                .addParameter("id", id)
+                .addParameter("id_voluntario", id_voluntario)
+                .addParameter("id_estado", EstadoTareaEnum.CANCELADA.id)
                 .executeUpdate();
         }
         catch(Exception error){

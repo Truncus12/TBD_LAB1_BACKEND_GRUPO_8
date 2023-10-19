@@ -17,7 +17,11 @@ public class TareaService {
         return tareas.porUsuario(id_usuario);
     }
 
-    public DTOTareaVista completar(long id, int id_usuario){
-        return tareas.completar(id, id_usuario);
+    public DTOTareaVista terminar(long id, int id_usuario){
+        return tareas.terminar(id, id_usuario);
+    }
+
+    public DTOTareaVista cancelar(long id, int id_usuario){
+        return tareas.cancelar(id, id_usuario);
     }
 }

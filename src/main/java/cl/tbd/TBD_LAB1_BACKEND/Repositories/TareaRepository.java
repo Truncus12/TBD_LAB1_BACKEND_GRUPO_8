@@ -20,5 +20,7 @@ public interface TareaRepository {
 
     int eliminarTarea(Long id);
 
-    DTOTareaVista completar(long id, int id_voluntario);
+    DTOTareaVista terminar(long id, int id_voluntario);
+
+    DTOTareaVista cancelar(long id, int id_voluntario);
 }
