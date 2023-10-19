@@ -1,5 +1,6 @@
 package cl.tbd.TBD_LAB1_BACKEND.Repositories;
 
+import cl.tbd.TBD_LAB1_BACKEND.DTOs.DTOEmergenciaVista;
 import cl.tbd.TBD_LAB1_BACKEND.Entities.EmergenciaEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -116,5 +117,22 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
             System.out.println(e.getMessage());
             return -1;
         }
+    }
+
+    @Override
+    public List<DTOEmergenciaVista> porUsuario(int id_coordinador) {
+        try(Connection conexion = sql2o.open()){
+            return conexion.createQuery("""
+                        SELECT 
+                    """)
+                    .addParameter("id_coordinador",id_coordinador)
+                    .throwOnMappingFailure(false)
+                    .executeAndFetch(DTOEmergenciaVista.class);
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        return null;
     }
 }
