@@ -16,4 +16,8 @@ public class TareaService {
     public List<DTOTareaVista> porUsuario(int id_usuario){
         return tareas.porUsuario(id_usuario);
     }
+
+    public DTOTareaVista completar(long id, int id_usuario){
+        return tareas.completar(id, id_usuario);
+    }
 }

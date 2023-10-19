@@ -19,4 +19,6 @@ public interface TareaRepository {
     int actualizarTarea(Long id, TareaEntity tarea);
 
     int eliminarTarea(Long id);
+
+    DTOTareaVista completar(long id, int id_voluntario);
 }

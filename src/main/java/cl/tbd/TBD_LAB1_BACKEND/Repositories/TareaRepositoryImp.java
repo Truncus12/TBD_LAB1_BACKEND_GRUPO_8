@@ -122,4 +122,27 @@ public class TareaRepositoryImp implements TareaRepository {
 
         return null;
     }
+
+    @Override
+    public DTOTareaVista completar(long id, int id_voluntario){
+        try(Connection conexion = sql2o.open()){
+            conexion.createQuery("""
+                UPDATE Tarea_X_Voluntario
+                SET 
+                    completada = TRUE
+                WHERE 
+                    id_tarea = :id 
+                AND id_voluntario = :id_voluntario
+                    """
+                )
+                .addParameter("id", id)
+                .addParameter("id_voluntario", id_voluntario)
+                .executeUpdate();
+        }
+        catch(Exception error){
+            error.printStackTrace();
+        }
+
+        return null;
+    }
 }
