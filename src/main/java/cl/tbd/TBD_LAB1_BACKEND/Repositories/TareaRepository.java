@@ -23,4 +23,6 @@ public interface TareaRepository {
     DTOTareaVista terminar(long id, int id_voluntario);
 
     DTOTareaVista cancelar(long id, int id_voluntario);
+
+    void Actualizar_Tarea_Estado(long id);
 }

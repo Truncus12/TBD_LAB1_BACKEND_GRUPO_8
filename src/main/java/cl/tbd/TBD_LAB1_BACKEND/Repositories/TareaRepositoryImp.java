@@ -171,4 +171,14 @@ public class TareaRepositoryImp implements TareaRepository {
 
         return null;
     }
+    @Override
+    public void Actualizar_Tarea_Estado(long id) {
+        try (Connection conexion = sql2o.open()) {
+            conexion.createQuery("SELECT actualizar_estado_tarea(:idTarea)")
+                    .addParameter("idTarea", id)
+                    .executeAndFetchFirst(Void.class);
+        } catch (Exception error) {
+            error.printStackTrace();
+        }
+    }
 }

@@ -18,6 +18,7 @@ public class TareaService {
     }
 
     public DTOTareaVista terminar(long id, int id_usuario){
+        tareas.Actualizar_Tarea_Estado(id);
         return tareas.terminar(id, id_usuario);
     }
 
