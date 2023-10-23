@@ -83,7 +83,7 @@ public class RankingRepositoryImp implements RankingRepository {
     public int actualizarRanking(Long id, RankingEntity ranking) {
         try (Connection conn = sql2o.open()) {
             conn.createQuery("UPDATE Ranking " +
-                            "SET SET puntaje = :puntaje, flag_invitado = :flag_invitado, flag_participa = :flag_participa " +
+                            "SET puntaje = :puntaje, flag_invitado = :flag_invitado, flag_participa = :flag_participa " +
                             "WHERE id = :id")
                     .addParameter("id", id)
                     .addParameter("puntaje", ranking.getPuntaje())
