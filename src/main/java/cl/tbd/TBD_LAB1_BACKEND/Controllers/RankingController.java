@@ -23,27 +23,27 @@ public class RankingController {
         return rankingService.obtenerRankings();
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     public RankingEntity obtenerRankingPorId(@PathVariable Long id) {
         return rankingService.obtenerRankingPorId(id);
     }
 
-    @GetMapping
+    @GetMapping("/tarea/{id_tarea}")
     public List<RankingEntity> obtenerRankingsPorTarea(Long id_tarea) {
         return rankingService.obtenerRankingsPorTarea(id_tarea);
     }
 
-    @GetMapping
+    @GetMapping("/voluntario/{id_voluntario}")
     public List<RankingEntity> obtenerRankingsPorVoluntario(Long id_voluntario) {
         return rankingService.obtenerRankingsPorVoluntario(id_voluntario);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public int actualizarRanking(@PathVariable Long id, @RequestBody RankingEntity ranking) {
         return rankingService.actualizarRanking(id, ranking);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public int eliminarRanking(@PathVariable Long id) {
         return rankingService.eliminarRanking(id);
     }

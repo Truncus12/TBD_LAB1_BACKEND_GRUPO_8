@@ -23,17 +23,17 @@ public class HabilidadController {
         return habilidadService.obtenerHabilidades();
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     public HabilidadEntity obtenerHabilidadPorId(@PathVariable Long id) {
         return habilidadService.obtenerHabilidadPorId(id);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public int actualizarHabilidad(@PathVariable Long id, @RequestBody HabilidadEntity habilidad) {
         return habilidadService.actualizarHabilidad(id, habilidad);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public int eliminarHabilidad(@PathVariable Long id) {
         return habilidadService.eliminarHabilidad(id);
     }
