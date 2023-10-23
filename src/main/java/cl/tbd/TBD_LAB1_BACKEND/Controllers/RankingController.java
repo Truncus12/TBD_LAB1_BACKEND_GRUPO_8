@@ -29,12 +29,12 @@ public class RankingController {
     }
 
     @GetMapping("/tarea/{id_tarea}")
-    public List<RankingEntity> obtenerRankingsPorTarea(Long id_tarea) {
+    public List<RankingEntity> obtenerRankingsPorTarea(@PathVariable Long id_tarea) {
         return rankingService.obtenerRankingsPorTarea(id_tarea);
     }
 
     @GetMapping("/voluntario/{id_voluntario}")
-    public List<RankingEntity> obtenerRankingsPorVoluntario(Long id_voluntario) {
+    public List<RankingEntity> obtenerRankingsPorVoluntario(@PathVariable Long id_voluntario) {
         return rankingService.obtenerRankingsPorVoluntario(id_voluntario);
     }
 
