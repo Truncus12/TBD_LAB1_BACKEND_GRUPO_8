@@ -1,6 +1,7 @@
 package cl.tbd.TBD_LAB1_BACKEND.Repositories;
 
 import cl.tbd.TBD_LAB1_BACKEND.DTOs.DTOTareaVista;
+import cl.tbd.TBD_LAB1_BACKEND.DTOs.DTOTareaVistaCercania;
 import cl.tbd.TBD_LAB1_BACKEND.Entities.EstadoTareaEnum;
 import cl.tbd.TBD_LAB1_BACKEND.Entities.TareaEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -109,13 +110,30 @@ public class TareaRepositoryImp implements TareaRepository {
     }
 
     @Override
-    public List<DTOTareaVista> porUsuario(int id_voluntario) {
+    public List<DTOTareaVista> porUsuario(int id_voluntario){
         try(Connection conexion = sql2o.open()){
             return conexion.createQuery(
                     "SELECT * FROM VistaTareaVoluntario WHERE id_voluntario = :id"
                 )
                 .addParameter("id", id_voluntario)
                 .executeAndFetch(DTOTareaVista.class);           
+        }
+        catch(Exception error){
+            error.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
+    public List<DTOTareaVistaCercania> porUsuarioCercania(int id_voluntario, int limite){
+        try(Connection conexion = sql2o.open()){
+            return conexion.createQuery(
+                    "SELECT * FROM VistaTareaVoluntarioCercania WHERE id_voluntario = :id LIMIT :limite"
+                )
+                .addParameter("id", id_voluntario)
+                .addParameter("limite", limite)
+                .executeAndFetch(DTOTareaVistaCercania.class);           
         }
         catch(Exception error){
             error.printStackTrace();

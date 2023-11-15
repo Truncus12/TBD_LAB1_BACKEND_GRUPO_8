@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cl.tbd.TBD_LAB1_BACKEND.DTOs.DTOTareaVista;
+import cl.tbd.TBD_LAB1_BACKEND.DTOs.DTOTareaVistaCercania;
 import cl.tbd.TBD_LAB1_BACKEND.Repositories.TareaRepository;
 
 @Service
@@ -16,6 +17,11 @@ public class TareaService {
     public List<DTOTareaVista> porUsuario(int id_usuario){
         return tareas.porUsuario(id_usuario);
     }
+    
+    public List<DTOTareaVistaCercania> porUsuarioCercania(int id_usuario, int limite){
+        return tareas.porUsuarioCercania(id_usuario, limite);
+    }
+    
 
     public DTOTareaVista terminar(long id, int id_usuario){
         tareas.Actualizar_Tarea_Estado(id);
