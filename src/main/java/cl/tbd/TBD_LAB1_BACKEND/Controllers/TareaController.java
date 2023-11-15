@@ -41,12 +41,16 @@ public class TareaController {
 
         for(int i=1; i<=limite; i++){
             DTOTareaVistaCercania tarea = new DTOTareaVistaCercania();
-            
+
             tarea.id = i;
             tarea.nombre = "Tarea " + i;
             tarea.descripcion = "Tarea de ejemplo " + i;
             tarea.latitud = -generador.nextDouble() * 0.1 - 33.5;
             tarea.longitud = -generador.nextDouble() * 0.1 - 70.5;
+            tarea.distancia = Math.sqrt(
+                (tarea.latitud + 70.5) * (tarea.latitud + 70.5) + 
+                (tarea.longitud + 33.5) * (tarea.longitud + 33.5)
+            );
 
             tareas.add(tarea);
         }

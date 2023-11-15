@@ -8,4 +8,5 @@ public class DTOTareaVistaCercania {
 
     public double latitud;
     public double longitud;
+    public double distancia;
 }
