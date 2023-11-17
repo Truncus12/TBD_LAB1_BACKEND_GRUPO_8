@@ -8,6 +8,8 @@ public class VoluntarioEntity {
     private String correo;
     private String contrasena;
 
+    private double latitud;
+    private double longitud;
 
     public VoluntarioEntity() {
     }
@@ -42,5 +44,21 @@ public class VoluntarioEntity {
 
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
+    }
+
+    public double getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(double latitud) {
+        this.latitud = latitud;
+    }
+
+    public double getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(double longitud) {
+        this.longitud = longitud;
     }
 }

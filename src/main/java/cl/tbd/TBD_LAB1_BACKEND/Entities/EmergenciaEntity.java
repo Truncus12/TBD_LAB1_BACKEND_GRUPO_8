@@ -9,6 +9,8 @@ public class EmergenciaEntity {
     private LocalDate fecha_inicio;
     private LocalDate fecha_fin;
     private Long id_institucion;
+    private double longitud;
+    private double latitud;
 
     public EmergenciaEntity() {
     }
@@ -67,5 +69,21 @@ public class EmergenciaEntity {
 
     public void setId_institucion(Long id_institucion) {
         this.id_institucion = id_institucion;
+    }
+
+    public double getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(double longitud) {
+        this.longitud = longitud;
+    }
+
+    public double getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(double latitud) {
+        this.latitud = latitud;
     }
 }

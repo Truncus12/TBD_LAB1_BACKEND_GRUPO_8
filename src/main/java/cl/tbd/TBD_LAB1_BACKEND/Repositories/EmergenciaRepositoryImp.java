@@ -14,18 +14,22 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
     @Autowired
     private Sql2o sql2o;
 
+    final String infoEmergencia = "Emergencia.*, st_x(st_astext(geom)) AS longitud, st_y(st_astext(geom)) AS latitud";
+
     @Override
     public int insertarEmergencia(EmergenciaEntity emergencia){
         try (Connection conn = sql2o.open()){
+            String point = "POINT("+emergencia.getLongitud()+" "+emergencia.getLatitud()+")";
             String sql =
-                    "INSERT INTO Emergencia(nombre,despcripcion,fecha_inicio,fecha_fin,id_institucion)"+
-                    "VALUES(:nombre, :descripcion, :fecha_inicio, :fecha_fin, :id_institucion)";
+                    "INSERT INTO Emergencia(nombre,despcripcion,fecha_inicio,fecha_fin,id_institucion, geom)"+
+                    "VALUES(:nombre, :descripcion, :fecha_inicio, :fecha_fin, :id_institucion, ST_GeomFromText(:point, 4326))";
             conn.createQuery(sql)
                     .addParameter("nombre",emergencia.getNombre())
                     .addParameter("descripcion",emergencia.getDescripcion())
                     .addParameter("fecha_inicio",emergencia.getFecha_inicio())
                     .addParameter("fecha_fin",emergencia.getFecha_fin())
                     .addParameter("id_institucion",emergencia.getId_institucion())
+                    .addParameter("point",point)
                     .executeUpdate();
             return 1;
         } catch (Exception e) {
@@ -38,7 +42,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
     public List<EmergenciaEntity> obtenerEmergencias(){
         try (Connection conn = sql2o.open()){
             String sql =
-                    "SELECT * " +
+                    "SELECT infoEmergencia " +
                     "FROM Emergencia";
             return conn.createQuery(sql,true)
                     .executeAndFetch(EmergenciaEntity.class);
@@ -52,7 +56,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
     public List<EmergenciaEntity> obtenerEmergenciasPorInstitucion(Long id_institucion){
         try (Connection conn = sql2o.open()){
             String sql =
-                    "SELECT * " +
+                    "SELECT infoEmergencia " +
                     "FROM Emergencia " +
                     "WHERE id_institution = : id_institucion";
             return conn.createQuery(sql,true)
@@ -68,7 +72,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
     public EmergenciaEntity obtenerEmergenciaPorId(Long id){
         try (Connection conn = sql2o.open()){
             String sql =
-                    "SELECT * " +
+                    "SELECT infoEmergencia " +
                     "FROM Emergencia " +
                     "WHERE id = :id";
             return conn.createQuery(sql,true)
@@ -83,11 +87,13 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
     @Override
     public int actualizarEmergencia(Long id, EmergenciaEntity emergencia){
         try (Connection conn = sql2o.open()){
+            String point = "POINT("+emergencia.getLongitud()+" "+emergencia.getLatitud()+")";
             String sql =
                     "UPDATE Emergencia " +
                     "SET nombre = :nombre, " +
                     "descripcion = :despcrion, fecha_inicio = :fecha_inicio, " +
-                    "fecha_fin = :fecha_fin, id_institucion = :id_institucion " +
+                    "fecha_fin = :fecha_fin, id_institucion = :id_institucion, " +
+                    "geom = ST_GeomFromText(:point, 4326) "+
                     "WHERE id  = :id";
             conn.createQuery(sql)
                     .addParameter("nombre",emergencia.getNombre())
@@ -95,6 +101,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
                     .addParameter("fecha_inicio",emergencia.getFecha_inicio())
                     .addParameter("fecha_fin",emergencia.getFecha_fin())
                     .addParameter("id_institucion",emergencia.getId_institucion())
+                    .addParameter("point",point)
                     .executeUpdate();
             return 1;
         } catch (Exception e) {

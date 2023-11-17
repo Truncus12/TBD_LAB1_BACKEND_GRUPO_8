@@ -1,5 +1,7 @@
 package cl.tbd.TBD_LAB1_BACKEND.Entities;
 
+import org.postgis.PGgeometry;
+
 import java.time.LocalDate;
 
 public class TareaEntity {
@@ -12,9 +14,8 @@ public class TareaEntity {
     private LocalDate fecha_fin;
     private char estado_actual;
     private Long id_emergencia;
-
-    public TareaEntity() {
-    }
+    private double longitud;
+    private double latitud;
 
     public TareaEntity(String nombre,
                        String descripcion,
@@ -104,5 +105,21 @@ public class TareaEntity {
 
     public void setId_emergencia(Long id_emergencia) {
         this.id_emergencia = id_emergencia;
+    }
+
+    public double getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(double longitud) {
+        this.longitud = longitud;
+    }
+
+    public double getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(double latitud) {
+        this.latitud = latitud;
     }
 }
