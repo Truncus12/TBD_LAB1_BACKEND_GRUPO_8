@@ -27,4 +27,8 @@ public class EmergenciaController {
         );
     }
 
+    @PostMapping
+    public int insertarEmergencia(@RequestBody DTOEmergenciaVista emergencia){
+        return servicio_emergencia.insertarEmergencia(emergencia);
+    }
 }

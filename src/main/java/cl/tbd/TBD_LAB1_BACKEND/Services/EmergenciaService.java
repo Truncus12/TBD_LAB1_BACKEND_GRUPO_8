@@ -2,6 +2,7 @@ package cl.tbd.TBD_LAB1_BACKEND.Services;
 
 import java.util.List;
 
+import cl.tbd.TBD_LAB1_BACKEND.Entities.EmergenciaEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,5 +16,20 @@ public class EmergenciaService {
     
     public List<DTOEmergenciaVista> porUsuario(int id_coordinador){
         return emergencias.porUsuario(id_coordinador);
+    }
+
+    public int insertarEmergencia(DTOEmergenciaVista emergencia){
+        return emergencias.insertarEmergencia(
+            new EmergenciaEntity(
+                    emergencia.id,
+                    emergencia.nombre,
+                    emergencia.descripcion,
+                    emergencia.fecha_inicio,
+                    emergencia.fecha_fin,
+                    emergencia.id_institucion,
+                    emergencia.longitud,
+                    emergencia.latitud
+            )
+        );
     }
 }
