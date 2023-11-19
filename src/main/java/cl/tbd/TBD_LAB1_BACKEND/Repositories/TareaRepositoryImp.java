@@ -124,6 +124,7 @@ public class TareaRepositoryImp implements TareaRepository {
                     "SELECT * FROM VistaTareaVoluntario WHERE id_voluntario = :id"
                 )
                 .addParameter("id", id_voluntario)
+                .throwOnMappingFailure(false)
                 .executeAndFetch(DTOTareaVista.class);           
         }
         catch(Exception error){
@@ -141,7 +142,7 @@ public class TareaRepositoryImp implements TareaRepository {
                 )
                 .addParameter("id", id_voluntario)
                 .addParameter("limite", limite)
-                .executeAndFetch(DTOTareaVistaCercania.class);           
+                .executeAndFetch(DTOTareaVistaCercania.class);
         }
         catch(Exception error){
             error.printStackTrace();
@@ -152,15 +153,13 @@ public class TareaRepositoryImp implements TareaRepository {
 
     @Override
     public List<DTOTareaVistaCercania> porUsuarioCercania2(PGgeometry ubicacion, int limite) {
-        try(Connection conexion = sql2o.open()){
+        try (Connection conexion = sql2o.open()) {
             return conexion.createQuery(
-                    "SELECT * FROM VistaTareaVoluntarioCercania2 WHERE ubicacion= :ubicacion LIMIT :limite"
-                )
-                .addParameter("ubicacion", ubicacion)
-                .addParameter("limite", limite)
-                .executeAndFetch(DTOTareaVistaCercania.class);
-        }
-        catch(Exception error){
+                            "SELECT * FROM obtener_tareas_cercanas(ST_GeomFromText(:ubicacion), :limite)")
+                    .addParameter("ubicacion", ubicacion.toString())
+                    .addParameter("limite", limite)
+                    .executeAndFetch(DTOTareaVistaCercania.class);
+        } catch (Exception error) {
             System.out.println(error.getMessage());
             return null;
         }

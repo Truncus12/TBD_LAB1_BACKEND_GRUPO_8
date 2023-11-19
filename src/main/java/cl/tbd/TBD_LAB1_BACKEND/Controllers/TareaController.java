@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
 
+import cl.tbd.TBD_LAB1_BACKEND.Entities.VoluntarioEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,35 +31,12 @@ public class TareaController {
 
     @GetMapping("por-cercania")
     public List<DTOTareaVistaCercania> porUsuarioCercania(@CookieValue("token_sesion") String jwt, int limite){
-        ArrayList<DTOTareaVistaCercania> tareas = new ArrayList<>();
-        
-        Random generador = new Random(1000);
-
-        for(int i=1; i<=limite; i++){
-            DTOTareaVistaCercania tarea = new DTOTareaVistaCercania();
-
-            tarea.id = i;
-            tarea.nombre = "Tarea " + i;
-            tarea.descripcion = "Tarea de ejemplo " + i;
-            tarea.latitud = -generador.nextDouble() * 0.1 - 33.5;
-            tarea.longitud = -generador.nextDouble() * 0.1 - 70.5;
-            tarea.distancia = Math.sqrt(
-                (tarea.latitud + 70.5) * (tarea.latitud + 70.5) + 
-                (tarea.longitud + 33.5) * (tarea.longitud + 33.5)
-            );
-
-            tareas.add(tarea);
-        }
-
-        return tareas;
-        
-        /*
+        int usuario = servicio_auth.getIdVoluntario(jwt);
         return servicio_tarea
             .porUsuarioCercania(
                 servicio_auth.getIdVoluntario(jwt),
                 limite
             );
-        */
     }
 
     @PostMapping("{id}/terminar")

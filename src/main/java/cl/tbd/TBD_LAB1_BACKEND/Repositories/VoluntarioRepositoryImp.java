@@ -118,7 +118,7 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository {
     public PGgeometry obtenerUbicacion(int idUsuario) {
         try(Connection conexion = sql2o.open()){
             return conexion.createQuery("""
-                    SELECT geom AS ubicacion
+                    SELECT geom
                     FROM Voluntario
                     WHERE id = :id
                     """)
