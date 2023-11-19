@@ -8,20 +8,20 @@ public class DTOEmergenciaVista {
     public String descripcion;
     public LocalDate fecha_inicio;
     public LocalDate fecha_fin;
-    public Long id_institucion;
     public double longitud;
     public double latitud;
+    public int coordinador_asociado;
 
     public DTOEmergenciaVista(long id, String nombre, String descripcion,
                               LocalDate fecha_inicio, LocalDate fecha_fin,
-                              Long id_institucion, double longitud,
+                              int coordinador_asociado, double longitud,
                               double latitud) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fecha_inicio = fecha_inicio;
         this.fecha_fin = fecha_fin;
-        this.id_institucion = id_institucion;
+        this.coordinador_asociado = coordinador_asociado;
         this.longitud = longitud;
         this.latitud = latitud;
     }

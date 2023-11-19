@@ -3,10 +3,7 @@ package cl.tbd.TBD_LAB1_BACKEND.Controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import cl.tbd.TBD_LAB1_BACKEND.DTOs.DTOEmergenciaVista;
 import cl.tbd.TBD_LAB1_BACKEND.Services.AutenticacionService;

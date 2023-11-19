@@ -8,18 +8,18 @@ public class EmergenciaEntity {
     private String descripcion;
     private LocalDate fecha_inicio;
     private LocalDate fecha_fin;
-    private Long id_institucion;
     private double longitud;
     private double latitud;
+    public int coordinador_asociado;
 
     public EmergenciaEntity(Long id, String nombre, String descripcion, LocalDate fecha_inicio, LocalDate fecha_fin,
-                            Long id_institucion, double longitud, double latitud) {
+                            int coordinador_asociado, double longitud, double latitud) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fecha_inicio = fecha_inicio;
         this.fecha_fin = fecha_fin;
-        this.id_institucion = id_institucion;
+        this.coordinador_asociado = coordinador_asociado;
         this.longitud = longitud;
         this.latitud = latitud;
     }
@@ -64,12 +64,8 @@ public class EmergenciaEntity {
         this.fecha_fin = fecha_fin;
     }
 
-    public Long getId_institucion() {
-        return id_institucion;
-    }
-
-    public void setId_institucion(Long id_institucion) {
-        this.id_institucion = id_institucion;
+    public int getCoordinador_asociado() {
+        return coordinador_asociado;
     }
 
     public double getLongitud() {

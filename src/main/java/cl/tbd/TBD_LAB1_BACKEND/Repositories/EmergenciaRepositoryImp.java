@@ -21,14 +21,15 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
         try (Connection conn = sql2o.open()){
             String point = "POINT("+emergencia.getLongitud()+" "+emergencia.getLatitud()+")";
             String sql =
-                    "INSERT INTO Emergencia(nombre,despcripcion,fecha_inicio,fecha_fin,id_institucion, geom)"+
-                    "VALUES(:nombre, :descripcion, :fecha_inicio, :fecha_fin, :id_institucion, ST_GeomFromText(:point, 4326))";
+                    "INSERT INTO Emergencia(nombre,descripcion,fecha_inicio,fecha_fin,coordinador_asociado, geom)"+
+                    "VALUES(:nombre, :descripcion, :fecha_inicio, :fecha_fin, :coordinador_asociado," +
+                            "ST_GeomFromText(:point, 4326))";
             conn.createQuery(sql)
                     .addParameter("nombre",emergencia.getNombre())
                     .addParameter("descripcion",emergencia.getDescripcion())
                     .addParameter("fecha_inicio",emergencia.getFecha_inicio())
                     .addParameter("fecha_fin",emergencia.getFecha_fin())
-                    .addParameter("id_institucion",emergencia.getId_institucion())
+                    .addParameter("coordinador_asociado",emergencia.getCoordinador_asociado())
                     .addParameter("point",point)
                     .executeUpdate();
             return 1;
@@ -100,7 +101,6 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
                     .addParameter("descripcion",emergencia.getDescripcion())
                     .addParameter("fecha_inicio",emergencia.getFecha_inicio())
                     .addParameter("fecha_fin",emergencia.getFecha_fin())
-                    .addParameter("id_institucion",emergencia.getId_institucion())
                     .addParameter("point",point)
                     .executeUpdate();
             return 1;

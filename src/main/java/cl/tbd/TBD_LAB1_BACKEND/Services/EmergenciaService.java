@@ -19,17 +19,9 @@ public class EmergenciaService {
     }
 
     public int insertarEmergencia(DTOEmergenciaVista emergencia){
-        return emergencias.insertarEmergencia(
-            new EmergenciaEntity(
-                    emergencia.id,
-                    emergencia.nombre,
-                    emergencia.descripcion,
-                    emergencia.fecha_inicio,
-                    emergencia.fecha_fin,
-                    emergencia.id_institucion,
-                    emergencia.longitud,
-                    emergencia.latitud
-            )
-        );
+        EmergenciaEntity emergenciaEntity = new EmergenciaEntity( emergencia.id, emergencia.nombre,
+            emergencia.descripcion, emergencia.fecha_inicio, emergencia.fecha_fin, emergencia.coordinador_asociado,
+            emergencia.longitud, emergencia.latitud );
+        return emergencias.insertarEmergencia(emergenciaEntity);
     }
 }
