@@ -43,9 +43,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
     @Override
     public List<EmergenciaEntity> obtenerEmergencias(){
         try (Connection conn = sql2o.open()){
-            String sql =
-                    "SELECT infoEmergencia " +
-                    "FROM Emergencia";
+            String sql = "SELECT "+infoEmergencia+" FROM Emergencia";
             return conn.createQuery(sql,true)
                     .executeAndFetch(EmergenciaEntity.class);
         } catch (Exception e) {
@@ -57,10 +55,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
     @Override
     public List<EmergenciaEntity> obtenerEmergenciasPorInstitucion(Long id_institucion){
         try (Connection conn = sql2o.open()){
-            String sql =
-                    "SELECT infoEmergencia " +
-                    "FROM Emergencia " +
-                    "WHERE id_institution = : id_institucion";
+            String sql = "SELECT "+infoEmergencia+" FROM Emergencia WHERE id_institucion = :id_institucion";
             return conn.createQuery(sql,true)
                     .addParameter("id_institucion",id_institucion)
                     .executeAndFetch(EmergenciaEntity.class);
@@ -73,10 +68,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
     @Override
     public EmergenciaEntity obtenerEmergenciaPorId(Long id){
         try (Connection conn = sql2o.open()){
-            String sql =
-                    "SELECT infoEmergencia " +
-                    "FROM Emergencia " +
-                    "WHERE id = :id";
+            String sql = "SELECT "+infoEmergencia+" FROM Emergencia WHERE id = :id";
             return conn.createQuery(sql,true)
                     .addParameter("id",id)
                     .executeAndFetchFirst(EmergenciaEntity.class);

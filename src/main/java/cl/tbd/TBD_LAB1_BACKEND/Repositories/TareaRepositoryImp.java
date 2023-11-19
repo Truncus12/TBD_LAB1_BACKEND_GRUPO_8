@@ -47,7 +47,8 @@ public class TareaRepositoryImp implements TareaRepository {
     @Override
     public List<TareaEntity> obtenerTareas() {
         try (Connection conn = sql2o.open()) {
-            return conn.createQuery("SELECT infoTarea FROM Tarea")
+            String sql = "SELECT " + infoTarea + " FROM Tarea";
+            return conn.createQuery(sql, true)
                     .executeAndFetch(TareaEntity.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -58,7 +59,8 @@ public class TareaRepositoryImp implements TareaRepository {
     @Override
     public List<TareaEntity> obtenerTareasPorEmergencia(Long id_emergencia) {
         try (Connection conn = sql2o.open()) {
-            return conn.createQuery("SELECT infoTarea FROM Tarea WHERE id_emergencia = :id_emergencia")
+            String sql = "SELECT " + infoTarea + " FROM Tarea WHERE id_emergencia = :id_emergencia";
+            return conn.createQuery(sql, true)
                     .addParameter("id_emergencia", id_emergencia)
                     .executeAndFetch(TareaEntity.class);
         } catch (Exception e) {
@@ -70,7 +72,8 @@ public class TareaRepositoryImp implements TareaRepository {
     @Override
     public TareaEntity obtenerTareaPorId(Long id) {
         try (Connection conn = sql2o.open()) {
-            return conn.createQuery("SELECT infoTarea FROM Tarea WHERE id = :id")
+            String sql = "SELECT " + infoTarea + " FROM Tarea WHERE id = :id";
+            return conn.createQuery(sql, true)
                     .addParameter("id", id)
                     .executeAndFetchFirst(TareaEntity.class);
         } catch (Exception e) {
@@ -223,6 +226,4 @@ public class TareaRepositoryImp implements TareaRepository {
             error.printStackTrace();
         }
     }
-
-
 }
