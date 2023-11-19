@@ -19,11 +19,12 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
     @Override
     public int insertarEmergencia(EmergenciaEntity emergencia){
         try (Connection conn = sql2o.open()){
-            String point = "POINT("+emergencia.getLongitud()+" "+emergencia.getLatitud()+")";
             String sql =
                     "INSERT INTO Emergencia(nombre,descripcion,fecha_inicio,fecha_fin,coordinador_asociado, geom)"+
                     "VALUES(:nombre, :descripcion, :fecha_inicio, :fecha_fin, :coordinador_asociado," +
                             "ST_GeomFromText(:point, 4326))";
+            String point = "POINT("+emergencia.getLongitud()+" "+emergencia.getLatitud()+")";
+
             conn.createQuery(sql)
                     .addParameter("nombre",emergencia.getNombre())
                     .addParameter("descripcion",emergencia.getDescripcion())

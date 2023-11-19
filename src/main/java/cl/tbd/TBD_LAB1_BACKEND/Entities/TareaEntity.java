@@ -12,19 +12,20 @@ public class TareaEntity {
     private Integer cant_vol_inscritos;
     private LocalDate fecha_inicio;
     private LocalDate fecha_fin;
-    private char estado_actual;
+    private String estado_actual;
     private Long id_emergencia;
-    private double longitud;
-    private double latitud;
+    private Double longitud;
+    private Double latitud;
 
-    public TareaEntity(String nombre,
-                       String descripcion,
+    public TareaEntity(String nombre, String descripcion,
                        Integer cant_vol_requeridos,
                        Integer cant_vol_inscritos,
                        LocalDate fecha_inicio,
                        LocalDate fecha_fin,
-                       char estado_actual,
-                       Long id_emergencia) {
+                       String estado_actual,
+                       Long id_emergencia,
+                       Double longitud,
+                       Double latitud) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.cant_vol_requeridos = cant_vol_requeridos;
@@ -33,6 +34,8 @@ public class TareaEntity {
         this.fecha_fin = fecha_fin;
         this.estado_actual = estado_actual;
         this.id_emergencia = id_emergencia;
+        this.longitud = longitud;
+        this.latitud = latitud;
     }
 
     public Long getId() {
@@ -91,11 +94,11 @@ public class TareaEntity {
         this.fecha_fin = fecha_fin;
     }
 
-    public char getEstado_actual() {
+    public String getEstado_actual() {
         return estado_actual;
     }
 
-    public void setEstado_actual(char estado_actual) {
+    public void setEstado_actual(String estado_actual) {
         this.estado_actual = estado_actual;
     }
 

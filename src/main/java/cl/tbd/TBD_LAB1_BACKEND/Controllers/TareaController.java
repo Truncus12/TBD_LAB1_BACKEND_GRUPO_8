@@ -5,12 +5,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import cl.tbd.TBD_LAB1_BACKEND.DTOs.DTOTareaVista;
 import cl.tbd.TBD_LAB1_BACKEND.DTOs.DTOTareaVistaCercania;
@@ -82,5 +77,10 @@ public class TareaController {
                 id_tarea, 
                 servicio_auth.getIdVoluntario(jwt)
             );
+    }
+
+    @PostMapping
+    public int insertarTarea(@RequestBody DTOTareaVista tarea) {
+        return servicio_tarea.insertarTarea(tarea);
     }
 }
