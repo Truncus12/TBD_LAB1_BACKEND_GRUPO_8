@@ -2,7 +2,6 @@ package cl.tbd.TBD_LAB1_BACKEND.Controllers;
 
 import java.util.List;
 
-import org.postgresql.geometric.PGpoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

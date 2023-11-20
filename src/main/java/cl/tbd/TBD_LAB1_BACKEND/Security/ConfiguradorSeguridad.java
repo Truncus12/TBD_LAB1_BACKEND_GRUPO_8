@@ -2,6 +2,7 @@ package cl.tbd.TBD_LAB1_BACKEND.Security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.server.resource.web.BearerTokenAuthenticationEntryPoint;
@@ -15,6 +16,7 @@ public class ConfiguradorSeguridad {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests((authz) -> authz
+                .antMatchers(HttpMethod.OPTIONS).permitAll()
                 .antMatchers("/api/auth", "/api/voluntario/registrar").permitAll()
                 .anyRequest().authenticated()
             )
