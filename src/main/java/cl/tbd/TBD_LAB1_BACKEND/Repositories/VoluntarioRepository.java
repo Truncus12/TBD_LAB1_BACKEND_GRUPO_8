@@ -19,6 +19,8 @@ public interface VoluntarioRepository {
 
     int idPorCredenciales(String correo, String contrasena);
 
+    int actualizarUbicacion(Long id, DTOVoluntarioUbicacion ubicacion);
+
     PGgeometry obtenerUbicacion(int idUsuario);
     DTOVoluntarioUbicacion obtenerUbicacionVista(int idUsuario);
 }

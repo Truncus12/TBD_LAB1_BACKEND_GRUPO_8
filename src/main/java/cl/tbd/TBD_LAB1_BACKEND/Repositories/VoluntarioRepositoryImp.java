@@ -66,15 +66,29 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository {
 
     @Override
     public int actualizarVoluntario(Long id, VoluntarioEntity voluntario) {
-        String point = "POINT("+voluntario.getLongitud()+" "+voluntario.getLatitud()+")";
         try (Connection conn = sql2o.open()) {
             conn.createQuery("UPDATE Voluntario " +
-                            "SET nombre = :nombre, correo = :correo, contrasena = :contrasena, geom = ST_GeomFromText(:point, 4326) " +
+                            "SET nombre = :nombre, correo = :correo, contrasena = :contrasena " +
                             "WHERE id = :id")
                     .addParameter("id", id)
                     .addParameter("nombre", voluntario.getNombre())
                     .addParameter("correo", voluntario.getCorreo())
                     .addParameter("contrasena", voluntario.getContrasena())
+                    .executeUpdate();
+            return 1;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return -1;
+        }
+    }
+
+    public int actualizarUbicacion(Long id, DTOVoluntarioUbicacion ubicacion){
+        String point = "POINT("+ubicacion.longitud+" "+ubicacion.latitud+")";
+        try (Connection conn = sql2o.open()) {
+            conn.createQuery("UPDATE Voluntario " +
+                            "SET geom = ST_GeomFromText(:point, 4326) " +
+                            "WHERE id = :id")
+                    .addParameter("id", id)
                     .addParameter("point", point)
                     .executeUpdate();
             return 1;

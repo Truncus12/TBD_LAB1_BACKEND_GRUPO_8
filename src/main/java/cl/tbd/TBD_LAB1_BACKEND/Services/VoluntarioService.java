@@ -31,6 +31,10 @@ public class VoluntarioService {
         return voluntarioRepository.actualizarVoluntario(id, voluntario);
     }
 
+    public int actualizarUbicacion(Long id, DTOVoluntarioUbicacion ubicacion) {
+        return voluntarioRepository.actualizarUbicacion(id, ubicacion);
+    }
+
     public int eliminarVoluntario(Long id) {
         return voluntarioRepository.eliminarVoluntario(id);
     }
