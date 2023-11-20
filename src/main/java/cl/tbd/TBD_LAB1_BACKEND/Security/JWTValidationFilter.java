@@ -14,7 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import cl.tbd.TBD_LAB1_BACKEND.Entities.Usuario;
+import cl.tbd.TBD_LAB1_BACKEND.Entities.VoluntarioEntity;
 
 public class JWTValidationFilter extends OncePerRequestFilter{
     @Override
@@ -45,7 +45,7 @@ public class JWTValidationFilter extends OncePerRequestFilter{
         }
 
         // Crea detalles de usuario basado en el JWT        
-        UserDetails usuario = new Usuario();
+        UserDetails usuario = new VoluntarioEntity();
         
         UsernamePasswordAuthenticationToken autenticacion = new UsernamePasswordAuthenticationToken(
             usuario, null, usuario.getAuthorities()
