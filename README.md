@@ -2,7 +2,7 @@
 
 ## Importante:
 
-Antes de comenzar, asegúrate de crear y configurar la base de datos siguiendo las indicaciones proporcionadas en el archivo README.md ubicado en el directorio de archivos de la base de datos.
+Antes de comenzar, es importante crear y configurar la base de datos siguiendo las indicaciones proporcionadas en el archivo README.md ubicado en el directorio de archivos de la base de datos.
 
 ## Pasos
 
