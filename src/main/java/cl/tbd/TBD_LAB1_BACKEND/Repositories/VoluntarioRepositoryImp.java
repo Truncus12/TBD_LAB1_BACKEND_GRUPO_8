@@ -140,7 +140,7 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository {
             return conexion.createQuery("""
                     SELECT 
                         ST_X(geom) AS longitud,
-                        ST_Y(geom) AS latitud,
+                        ST_Y(geom) AS latitud
                     FROM Voluntario
                     WHERE id = :id
                     """)
