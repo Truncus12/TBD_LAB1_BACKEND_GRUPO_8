@@ -1,8 +1,13 @@
 # Instrucciones de Ejecución
 
-## Importante:
+## Importante
 
 Antes de comenzar, es importante crear y configurar la base de datos siguiendo las indicaciones proporcionadas en el archivo README.md ubicado en el directorio de archivos de la base de datos.
+
+## Versiones de Tecnologías Utilizadas
+
+- Spring Boot: 2.7.16
+- Java: 17
 
 ## Pasos
 
@@ -15,3 +20,8 @@ Antes de comenzar, es importante crear y configurar la base de datos siguiendo l
 4. Desde el archivo 'TbdLab1BackendApplication' en src/main/java/cl.tbd, ejecutar el backend.
 
 ¡Listo! Ahora el backend debería estar en funcionamiento.
+
+---
+
+**Nota adicional:**
+*De ser necesario, IntelliJ podría solicitarle que establezca un Java Development Kit (JDK). Se recomienda utilizar OpenJDK 17.*
