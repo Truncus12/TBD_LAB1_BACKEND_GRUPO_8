@@ -1,21 +1,22 @@
 package cl.tbd.TBD_LAB1_BACKEND.Controllers;
 
 import java.util.List;
-import java.util.ArrayList;
-import java.util.Random;
 
-import cl.tbd.TBD_LAB1_BACKEND.Entities.VoluntarioEntity;
+import org.postgis.Point;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import cl.tbd.TBD_LAB1_BACKEND.DTOs.DTOTareaVista;
-import cl.tbd.TBD_LAB1_BACKEND.DTOs.DTOTareaVistaCercania;
+import cl.tbd.TBD_LAB1_BACKEND.DTOs.DTOVistaMapa;
 import cl.tbd.TBD_LAB1_BACKEND.Services.AutenticacionService;
 import cl.tbd.TBD_LAB1_BACKEND.Services.TareaService;
+import cl.tbd.TBD_LAB1_BACKEND.Services.VoluntarioService;
 
 @RestController
 @RequestMapping("api/tarea")
 public class TareaController {
+    @Autowired
+    private VoluntarioService servicio_voluntario;
     @Autowired
     private TareaService servicio_tarea;
     @Autowired
@@ -30,13 +31,17 @@ public class TareaController {
     }
 
     @GetMapping("por-cercania")
-    public List<DTOTareaVistaCercania> porUsuarioCercania(@CookieValue("token_sesion") String jwt, int limite){
-        int usuario = servicio_auth.getIdVoluntario(jwt);
-        return servicio_tarea
-            .porUsuarioCercania(
-                servicio_auth.getIdVoluntario(jwt),
-                limite
-            );
+    public DTOVistaMapa porUsuarioCercania(@CookieValue("token_sesion") String jwt, int limite){
+        int id_voluntario = servicio_auth.getIdVoluntario(jwt);
+
+        return new DTOVistaMapa(
+            (Point) servicio_voluntario.obtenerUbicacion(id_voluntario).getGeometry(),
+            servicio_tarea
+                .porUsuarioCercania(
+                    id_voluntario,
+                    limite
+            )
+        );
     }
 
     @PostMapping("{id}/terminar")

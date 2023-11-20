@@ -14,9 +14,7 @@ public interface TareaRepository {
 
     List<DTOTareaVista> porUsuario(int id_usuario);
 
-    List<DTOTareaVistaCercania> porUsuarioCercania(int id_usuario, int limite);
-
-    List<DTOTareaVistaCercania> porUsuarioCercania2(PGgeometry ubicacion, int limite);
+    List<DTOTareaVistaCercania> porUsuarioCercania(PGgeometry ubicacion, int limite);
 
     List<TareaEntity> obtenerTareasPorEmergencia(Long id_emergencia);
 

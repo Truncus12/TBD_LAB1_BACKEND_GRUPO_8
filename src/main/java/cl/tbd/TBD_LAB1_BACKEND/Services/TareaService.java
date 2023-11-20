@@ -24,7 +24,7 @@ public class TareaService {
     
     public List<DTOTareaVistaCercania> porUsuarioCercania(int id_usuario, int limite){
         PGgeometry ubicacion = voluntarioService.obtenerUbicacion(id_usuario);
-        return tareas.porUsuarioCercania2(ubicacion, limite);
+        return tareas.porUsuarioCercania(ubicacion, limite);
     }
 
     public DTOTareaVista terminar(long id, int id_usuario){

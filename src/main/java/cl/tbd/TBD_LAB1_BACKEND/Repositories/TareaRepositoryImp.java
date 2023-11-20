@@ -138,24 +138,7 @@ public class TareaRepositoryImp implements TareaRepository {
     }
 
     @Override
-    public List<DTOTareaVistaCercania> porUsuarioCercania(int id_voluntario, int limite){
-        try(Connection conexion = sql2o.open()){
-            return conexion.createQuery(
-                    "SELECT * FROM VistaTareaVoluntarioCercania WHERE id_voluntario = :id LIMIT :limite"
-                )
-                .addParameter("id", id_voluntario)
-                .addParameter("limite", limite)
-                .executeAndFetch(DTOTareaVistaCercania.class);
-        }
-        catch(Exception error){
-            error.printStackTrace();
-        }
-
-        return null;
-    }
-
-    @Override
-    public List<DTOTareaVistaCercania> porUsuarioCercania2(PGgeometry ubicacion, int limite) {
+    public List<DTOTareaVistaCercania> porUsuarioCercania(PGgeometry ubicacion, int limite) {
         try (Connection conexion = sql2o.open()) {
             return conexion.createQuery(
                             "SELECT * FROM obtener_tareas_cercanas(ST_GeomFromText(:ubicacion), :limite)")
