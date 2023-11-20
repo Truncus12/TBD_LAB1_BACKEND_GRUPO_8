@@ -43,7 +43,7 @@ public class VoluntarioController {
         return voluntarioService.actualizarVoluntario(id, voluntario);
     }
 
-    @PutMapping("/ubicacion")
+    @PutMapping("ubicacion")
     public void actualizarUbicacion(@CookieValue("token_sesion") String jwt, @RequestBody DTOVoluntarioUbicacion ubicacion){
         voluntarioService.actualizarUbicacion(
             (long) servicio_auth.getIdVoluntario(jwt),
