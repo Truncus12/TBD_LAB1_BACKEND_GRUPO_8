@@ -1,6 +1,7 @@
 package cl.tbd.TBD_LAB1_BACKEND.Services;
 
 import cl.tbd.TBD_LAB1_BACKEND.DTOs.DTORegistrar;
+import cl.tbd.TBD_LAB1_BACKEND.DTOs.DTOVoluntarioUbicacion;
 import cl.tbd.TBD_LAB1_BACKEND.Entities.VoluntarioEntity;
 import cl.tbd.TBD_LAB1_BACKEND.Repositories.VoluntarioRepository;
 import org.postgis.PGgeometry;
@@ -42,5 +43,9 @@ public class VoluntarioService {
 
     public PGgeometry obtenerUbicacion(int idUsuario) {
         return voluntarioRepository.obtenerUbicacion(idUsuario);
+    }
+
+    public DTOVoluntarioUbicacion obtenerUbicacionVista(int idUsuario) {
+        return voluntarioRepository.obtenerUbicacionVista(idUsuario);
     }
 }

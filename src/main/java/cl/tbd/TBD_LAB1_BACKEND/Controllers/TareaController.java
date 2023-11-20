@@ -2,7 +2,7 @@ package cl.tbd.TBD_LAB1_BACKEND.Controllers;
 
 import java.util.List;
 
-import org.postgis.Point;
+import org.postgresql.geometric.PGpoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,7 +35,7 @@ public class TareaController {
         int id_voluntario = servicio_auth.getIdVoluntario(jwt);
 
         return new DTOVistaMapa(
-            (Point) servicio_voluntario.obtenerUbicacion(id_voluntario).getGeometry(),
+            servicio_voluntario.obtenerUbicacionVista(id_voluntario),
             servicio_tarea
                 .porUsuarioCercania(
                     id_voluntario,

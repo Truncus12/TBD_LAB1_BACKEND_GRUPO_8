@@ -1,5 +1,6 @@
 package cl.tbd.TBD_LAB1_BACKEND.Repositories;
 
+import cl.tbd.TBD_LAB1_BACKEND.DTOs.DTOVoluntarioUbicacion;
 import cl.tbd.TBD_LAB1_BACKEND.Entities.VoluntarioEntity;
 import org.postgis.PGgeometry;
 
@@ -19,4 +20,5 @@ public interface VoluntarioRepository {
     int idPorCredenciales(String correo, String contrasena);
 
     PGgeometry obtenerUbicacion(int idUsuario);
+    DTOVoluntarioUbicacion obtenerUbicacionVista(int idUsuario);
 }
