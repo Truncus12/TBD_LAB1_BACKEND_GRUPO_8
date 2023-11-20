@@ -17,8 +17,6 @@ public class TareaRepositoryImp implements TareaRepository {
     @Autowired
     private Sql2o sql2o;
 
-    final String infoTarea = "Tarea.*, st_x(st_astext(geom)) AS longitud, st_y(st_astext(geom)) AS latitud";
-
     @Override
     public int insertarTarea(TareaEntity tarea) {
         try (Connection conn = sql2o.open()) {
@@ -47,7 +45,7 @@ public class TareaRepositoryImp implements TareaRepository {
     @Override
     public List<TareaEntity> obtenerTareas() {
         try (Connection conn = sql2o.open()) {
-            String sql = "SELECT " + infoTarea + " FROM Tarea";
+            String sql = "SELECT nombre, descripcion, cant_vol_requeridos, cant_vol_inscritos, fecha_inicio, fecha_fin, estado_actual, id_emergencia, st_x(st_astext(geom)) AS longitud, st_y(st_astext(geom)) AS latitud FROM Tarea";
             return conn.createQuery(sql, true)
                     .executeAndFetch(TareaEntity.class);
         } catch (Exception e) {
@@ -59,7 +57,7 @@ public class TareaRepositoryImp implements TareaRepository {
     @Override
     public List<TareaEntity> obtenerTareasPorEmergencia(Long id_emergencia) {
         try (Connection conn = sql2o.open()) {
-            String sql = "SELECT " + infoTarea + " FROM Tarea WHERE id_emergencia = :id_emergencia";
+            String sql = "SELECT nombre, descripcion, cant_vol_requeridos, cant_vol_inscritos, fecha_inicio, fecha_fin, estado_actual, id_emergencia, st_x(st_astext(geom)) AS longitud, st_y(st_astext(geom)) AS latitud FROM Tarea WHERE id_emergencia = :id_emergencia";
             return conn.createQuery(sql, true)
                     .addParameter("id_emergencia", id_emergencia)
                     .executeAndFetch(TareaEntity.class);
@@ -72,7 +70,7 @@ public class TareaRepositoryImp implements TareaRepository {
     @Override
     public TareaEntity obtenerTareaPorId(Long id) {
         try (Connection conn = sql2o.open()) {
-            String sql = "SELECT " + infoTarea + " FROM Tarea WHERE id = :id";
+            String sql = "SELECT nombre, descripcion, cant_vol_requeridos, cant_vol_inscritos, fecha_inicio, fecha_fin, estado_actual, id_emergencia, st_x(st_astext(geom)) AS longitud, st_y(st_astext(geom)) AS latitud FROM Tarea WHERE id = :id";
             return conn.createQuery(sql, true)
                     .addParameter("id", id)
                     .executeAndFetchFirst(TareaEntity.class);

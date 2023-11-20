@@ -15,8 +15,6 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository {
     @Autowired
     private Sql2o sql2o;
 
-    final String infoVoluntario = "Voluntario.*, st_x(st_astext(geom)) AS longitud, st_y(st_astext(geom)) AS latitud";
-
     @Override
     public int insertarVoluntario(VoluntarioEntity voluntario) {
         try(Connection conexion = sql2o.open()){
@@ -42,7 +40,7 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository {
     @Override
     public List<VoluntarioEntity> obtenerVoluntarios() {
         try (Connection conn = sql2o.open()) {
-            String sql = "SELECT "+infoVoluntario+" FROM Voluntario";
+            String sql = "SELECT id, nombre, correo, contrasena, st_x(st_astext(geom)) AS longitud, st_y(st_astext(geom)) AS latitud FROM Voluntario";
             return conn.createQuery(sql, true)
                     .executeAndFetch(VoluntarioEntity.class);
         } catch (Exception e) {
@@ -54,7 +52,7 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository {
     @Override
     public VoluntarioEntity obtenerVoluntarioPorId(Long id) {
         try (Connection conn = sql2o.open()) {
-            String sql = "SELECT "+infoVoluntario+" FROM Voluntario WHERE id = :id";
+            String sql = "SELECT id, nombre, correo, contrasena, st_x(st_astext(geom)) AS longitud, st_y(st_astext(geom)) AS latitud FROM Voluntario WHERE id = :id";
             return conn.createQuery(sql, true)
                     .addParameter("id", id)
                     .executeAndFetchFirst(VoluntarioEntity.class);

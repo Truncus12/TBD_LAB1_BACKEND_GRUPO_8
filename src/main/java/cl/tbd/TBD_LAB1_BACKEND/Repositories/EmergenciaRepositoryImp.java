@@ -14,8 +14,6 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
     @Autowired
     private Sql2o sql2o;
 
-    final String infoEmergencia = "Emergencia.*, st_x(st_astext(geom)) AS longitud, st_y(st_astext(geom)) AS latitud";
-
     @Override
     public int insertarEmergencia(EmergenciaEntity emergencia){
         try (Connection conn = sql2o.open()){
@@ -43,7 +41,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
     @Override
     public List<EmergenciaEntity> obtenerEmergencias(){
         try (Connection conn = sql2o.open()){
-            String sql = "SELECT "+infoEmergencia+" FROM Emergencia";
+            String sql = "SELECT nombre,descripcion,fecha_inicio,fecha_fin,coordinador_asociado,  st_x(st_astext(geom)) AS longitud, st_y(st_astext(geom)) AS latitud FROM Emergencia";
             return conn.createQuery(sql,true)
                     .executeAndFetch(EmergenciaEntity.class);
         } catch (Exception e) {
@@ -55,7 +53,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
     @Override
     public List<EmergenciaEntity> obtenerEmergenciasPorInstitucion(Long id_institucion){
         try (Connection conn = sql2o.open()){
-            String sql = "SELECT "+infoEmergencia+" FROM Emergencia WHERE id_institucion = :id_institucion";
+            String sql = "SELECT nombre,descripcion,fecha_inicio,fecha_fin,coordinador_asociado,  st_x(st_astext(geom)) AS longitud, st_y(st_astext(geom)) AS latitud FROM Emergencia WHERE id_institucion = :id_institucion";
             return conn.createQuery(sql,true)
                     .addParameter("id_institucion",id_institucion)
                     .executeAndFetch(EmergenciaEntity.class);
@@ -68,7 +66,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
     @Override
     public EmergenciaEntity obtenerEmergenciaPorId(Long id){
         try (Connection conn = sql2o.open()){
-            String sql = "SELECT "+infoEmergencia+" FROM Emergencia WHERE id = :id";
+            String sql = "SELECT nombre,descripcion,fecha_inicio,fecha_fin,coordinador_asociado,  st_x(st_astext(geom)) AS longitud, st_y(st_astext(geom)) AS latitud FROM Emergencia WHERE id = :id";
             return conn.createQuery(sql,true)
                     .addParameter("id",id)
                     .executeAndFetchFirst(EmergenciaEntity.class);
