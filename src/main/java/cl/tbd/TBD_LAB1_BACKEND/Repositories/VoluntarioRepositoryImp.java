@@ -41,7 +41,8 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository {
     @Override
     public List<VoluntarioEntity> obtenerVoluntarios() {
         try (Connection conn = sql2o.open()) {
-            return conn.createQuery("SELECT infoVoluntario FROM Voluntario")
+            String sql = "SELECT "+infoVoluntario+" FROM Voluntario";
+            return conn.createQuery(sql, true)
                     .executeAndFetch(VoluntarioEntity.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -52,7 +53,8 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository {
     @Override
     public VoluntarioEntity obtenerVoluntarioPorId(Long id) {
         try (Connection conn = sql2o.open()) {
-            return conn.createQuery("SELECT infoVoluntario FROM Voluntario WHERE id = :id")
+            String sql = "SELECT "+infoVoluntario+" FROM Voluntario WHERE id = :id";
+            return conn.createQuery(sql, true)
                     .addParameter("id", id)
                     .executeAndFetchFirst(VoluntarioEntity.class);
         } catch (Exception e) {
