@@ -6,12 +6,12 @@ Antes de comenzar, es importante crear y configurar la base de datos siguiendo l
 
 ## Pasos
 
-1. Abre el proyecto en tu entorno de desarrollo preferido. Se sugiere utilizar IntelliJ IDEA por su practicidad.
+1. Abrir el proyecto en su entorno de desarrollo preferido. Se sugiere utilizar IntelliJ IDEA por su practicidad.
 
-2. Espera a que IntelliJ (o tu entorno de desarrollo) cargue todas las dependecias.
+2. Esperar a que IntelliJ (o el entorno de desarrollo escogido) cargue todas las dependencias.
 
-3. **Actualiza las credenciales en el archivo 'application.properties' con las credenciales propias, para establecer la conexión con la base de datos previamente creada.**
+3. **Actualizar las credenciales en el archivo 'application.properties' con las propias, para establecer la conexión con la base de datos previamente creada.**
 
-4. Desde el archivo 'TbdLab1BackendApplication' en src/main/java/cl.tbd, ejecuta el backend.
+4. Desde el archivo 'TbdLab1BackendApplication' en src/main/java/cl.tbd, ejecutar el backend.
 
 ¡Listo! Ahora el backend debería estar en funcionamiento.
